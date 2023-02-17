@@ -1,0 +1,1707 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.1deb5ubuntu1
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:3306
+-- Generation Time: Feb 17, 2023 at 10:12 PM
+-- Server version: 8.0.32-0ubuntu0.22.04.2
+-- PHP Version: 8.1.2-1ubuntu2.10
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `inventory_management`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart_contents`
+--
+
+CREATE TABLE `cart_contents` (
+  `customer_id` varchar(200) NOT NULL,
+  `panel1` int NOT NULL DEFAULT '0',
+  `panel2` int NOT NULL DEFAULT '0',
+  `panel3` int NOT NULL DEFAULT '0',
+  `panel4` int NOT NULL DEFAULT '0',
+  `panel5` int NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `cart_contents`
+--
+
+INSERT INTO `cart_contents` (`customer_id`, `panel1`, `panel2`, `panel3`, `panel4`, `panel5`) VALUES
+('aa', 3, 2, 0, 0, 1),
+('invAdmin', 0, 0, 0, 0, 0),
+('invDev', 3, 0, 0, 0, 0),
+('invEmployee', 0, 0, 0, 0, 0),
+('pkkp', 0, 0, 0, 0, 0),
+('rizzRahul', 0, 0, 0, 0, 0),
+('testEmp', 0, 0, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `counts`
+--
+
+CREATE TABLE `counts` (
+  `id` int NOT NULL DEFAULT '1',
+  `panel_count` int NOT NULL DEFAULT '0',
+  `module_count` int NOT NULL DEFAULT '0',
+  `order_count` int NOT NULL DEFAULT '0',
+  `request_count` int NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `counts`
+--
+
+INSERT INTO `counts` (`id`, `panel_count`, `module_count`, `order_count`, `request_count`) VALUES
+(1, 110, 1118, 24, 11);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer`
+--
+
+CREATE TABLE `customer` (
+  `customer_id` varchar(200) NOT NULL,
+  `customer_fname` varchar(200) NOT NULL,
+  `customer_lname` varchar(200) NOT NULL,
+  `customer_contact` varchar(200) NOT NULL,
+  `customer_email` varchar(200) NOT NULL,
+  `customer_address` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`customer_id`, `customer_fname`, `customer_lname`, `customer_contact`, `customer_email`, `customer_address`) VALUES
+('aa', 'opopopo', 'as11213', 'as11213', 'tst@mymail.com', 'as11213'),
+('shreyasa', 'shreyasa', 'joshi', '7892335688', 'iamscjoshi@gmail.com', 'sai madhura grace'),
+('test', 'test', 'test', '7892335688', 'test1@gmail.com', 'fththhtrhhtr'),
+('fdsfsdfdsfsd', 'dfgbfd', 'dfgdf', '7892335688', 'shreyasajoshi.cs20@rvce.edu.in', 'ggrfger'),
+('a', 'a', 'a', '1234567899', 'a', 'a'),
+('invDev', 'Corner', 'Round', '1234566789', 'iamscjoshi', '~~~'),
+('invEmployee', 'employee', 'inv', '1234567898', 'invEmp@sentient.com', '~~'),
+('invAdmin', 'adm', 'adm', '1234567888', 'invAdmin@sentient.com', '~~~'),
+('rizzRahul', 'therizzer', 'rahul', '1234567899', 'rahul@rizzer.com', '~~'),
+('pkkp', 'prajakta', 'kp', '1234567899', 'shreyasa@crushes', ''),
+('testEmp', 'Employee', 'Test', '7676767676', 'iamscjoshi@me.com', '!!');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `module_definition`
+--
+
+CREATE TABLE `module_definition` (
+  `module_type` varchar(200) NOT NULL,
+  `warranty_period` int NOT NULL DEFAULT '2'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `module_definition`
+--
+
+INSERT INTO `module_definition` (`module_type`, `warranty_period`) VALUES
+('PM', 8);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `module_details`
+--
+
+CREATE TABLE `module_details` (
+  `module_id` int NOT NULL,
+  `panel_id` int DEFAULT NULL,
+  `module_type` varchar(5000) NOT NULL,
+  `date_of_issue` date DEFAULT NULL,
+  `request_id` int DEFAULT NULL,
+  `replaced_date` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `module_details`
+--
+
+INSERT INTO `module_details` (`module_id`, `panel_id`, `module_type`, `date_of_issue`, `request_id`, `replaced_date`) VALUES
+(1, 1, 'PM', '2023-02-10', NULL, NULL),
+(2, 1, 'PM', '2023-02-10', NULL, NULL),
+(3, 1, 'PM', '2023-02-10', NULL, NULL),
+(4, 1, 'PM', '2023-02-10', NULL, NULL),
+(5, 1, 'CAP', '2023-02-10', NULL, NULL),
+(6, 1, 'CAP', '2023-02-10', NULL, NULL),
+(7, 1, 'CAP', '2023-02-10', NULL, NULL),
+(8, 1, 'CAP', '2023-02-10', NULL, NULL),
+(9, 1, 'CAP', '2023-02-10', NULL, NULL),
+(10, 1, 'CAP', '2023-02-10', NULL, NULL),
+(11, 1, 'CAP', '2023-02-10', NULL, NULL),
+(12, 1, 'CAP', '2023-02-10', NULL, NULL),
+(13, 1, 'TC', '2023-02-10', NULL, NULL),
+(14, 1, 'TC', '2023-02-10', NULL, NULL),
+(15, 1, 'TC', '2023-02-10', NULL, NULL),
+(16, 2, 'PM', '2023-02-10', NULL, NULL),
+(17, 2, 'PM', '2023-02-10', NULL, NULL),
+(18, 2, 'PM', '2023-02-10', NULL, NULL),
+(19, 2, 'PM', '2023-02-10', NULL, NULL),
+(20, 2, 'CAP', '2023-02-10', NULL, NULL),
+(21, 2, 'CAP', '2023-02-10', NULL, NULL),
+(22, 2, 'CAP', '2023-02-10', NULL, NULL),
+(23, 2, 'CAP', '2023-02-10', NULL, NULL),
+(24, 2, 'CAP', '2023-02-10', NULL, NULL),
+(25, 2, 'CAP', '2023-02-10', NULL, NULL),
+(26, 2, 'CAP', '2023-02-10', NULL, NULL),
+(27, 2, 'CAP', '2023-02-10', NULL, NULL),
+(28, 2, 'TC', '2023-02-10', NULL, NULL),
+(29, 2, 'TC', '2023-02-10', NULL, NULL),
+(30, 2, 'TC', '2023-02-10', NULL, NULL),
+(31, 3, 'PM', '2023-02-10', NULL, NULL),
+(32, 3, 'PM', '2023-02-10', NULL, NULL),
+(33, 3, 'PM', '2023-02-10', NULL, NULL),
+(34, 3, 'PM', '2023-02-10', NULL, NULL),
+(35, 3, 'CAP', '2023-02-10', NULL, NULL),
+(36, 3, 'CAP', '2023-02-10', NULL, NULL),
+(37, 3, 'CAP', '2023-02-10', NULL, NULL),
+(38, 3, 'CAP', '2023-02-10', NULL, NULL),
+(39, 3, 'CAP', '2023-02-10', NULL, NULL),
+(40, 3, 'CAP', '2023-02-10', NULL, NULL),
+(41, 3, 'CAP', '2023-02-10', NULL, NULL),
+(42, 3, 'CAP', '2023-02-10', NULL, NULL),
+(43, 3, 'TC', '2023-02-10', NULL, NULL),
+(44, 3, 'TC', '2023-02-10', NULL, NULL),
+(45, 3, 'TC', '2023-02-10', NULL, NULL),
+(46, 4, 'PM', '2023-02-10', NULL, NULL),
+(47, 4, 'PM', '2023-02-10', NULL, NULL),
+(48, 4, 'PM', '2023-02-10', NULL, NULL),
+(49, 4, 'PM', '2023-02-10', NULL, NULL),
+(50, 4, 'CAP', '2023-02-10', NULL, NULL),
+(51, 4, 'CAP', '2023-02-10', NULL, NULL),
+(52, 4, 'CAP', '2023-02-10', NULL, NULL),
+(53, 4, 'CAP', '2023-02-10', NULL, NULL),
+(54, 4, 'CAP', '2023-02-10', NULL, NULL),
+(55, 4, 'CAP', '2023-02-10', NULL, NULL),
+(56, 4, 'CAP', '2023-02-10', NULL, NULL),
+(57, 4, 'CAP', '2023-02-10', NULL, NULL),
+(58, 4, 'TC', '2023-02-10', NULL, NULL),
+(59, 4, 'TC', '2023-02-10', NULL, NULL),
+(60, 4, 'TC', '2023-02-10', NULL, NULL),
+(61, 5, 'PM', '2023-02-10', NULL, NULL),
+(62, 5, 'PM', '2023-02-10', NULL, NULL),
+(63, 5, 'PM', '2023-02-10', NULL, NULL),
+(64, 5, 'PM', '2023-02-10', NULL, NULL),
+(65, 5, 'CAP', '2023-02-10', NULL, NULL),
+(66, 5, 'CAP', '2023-02-10', NULL, NULL),
+(67, 5, 'CAP', '2023-02-10', NULL, NULL),
+(68, 5, 'CAP', '2023-02-10', NULL, NULL),
+(69, 5, 'CAP', '2023-02-10', NULL, NULL),
+(70, 5, 'CAP', '2023-02-10', NULL, NULL),
+(71, 5, 'CAP', '2023-02-10', NULL, NULL),
+(72, 5, 'CAP', '2023-02-10', NULL, NULL),
+(73, 5, 'TC', '2023-02-10', NULL, NULL),
+(74, 5, 'TC', '2023-02-10', NULL, NULL),
+(75, 5, 'TC', '2023-02-10', NULL, NULL),
+(76, 6, 'PM', '2023-02-10', NULL, NULL),
+(77, 6, 'PM', '2023-02-10', NULL, NULL),
+(78, 6, 'PM', '2023-02-10', NULL, NULL),
+(79, 6, 'PM', '2023-02-10', NULL, NULL),
+(80, 6, 'CAP', '2023-02-10', NULL, NULL),
+(81, 6, 'CAP', '2023-02-10', NULL, NULL),
+(82, 6, 'CAP', '2023-02-10', NULL, NULL),
+(83, 6, 'CAP', '2023-02-10', NULL, NULL),
+(84, 6, 'CAP', '2023-02-10', NULL, NULL),
+(85, 6, 'CAP', '2023-02-10', NULL, NULL),
+(86, 6, 'CAP', '2023-02-10', NULL, NULL),
+(87, 6, 'CAP', '2023-02-10', NULL, NULL),
+(88, 6, 'TC', '2023-02-10', NULL, NULL),
+(89, 6, 'TC', '2023-02-10', NULL, NULL),
+(90, 6, 'TC', '2023-02-10', NULL, NULL),
+(91, 7, 'PM', '2023-02-10', NULL, NULL),
+(92, 7, 'PM', '2023-02-10', NULL, NULL),
+(93, 7, 'PM', '2023-02-10', NULL, NULL),
+(94, 7, 'PM', '2023-02-10', NULL, NULL),
+(95, 7, 'CAP', '2023-02-10', NULL, NULL),
+(96, 7, 'CAP', '2023-02-10', NULL, NULL),
+(97, 7, 'CAP', '2023-02-10', NULL, NULL),
+(98, 7, 'CAP', '2023-02-10', NULL, NULL),
+(99, 7, 'CAP', '2023-02-10', NULL, NULL),
+(100, 7, 'CAP', '2023-02-10', NULL, NULL),
+(101, 7, 'CAP', '2023-02-10', NULL, NULL),
+(102, 7, 'CAP', '2023-02-10', NULL, NULL),
+(103, 7, 'TC', '2023-02-10', NULL, NULL),
+(104, 7, 'TC', '2023-02-10', NULL, NULL),
+(105, 7, 'TC', '2023-02-10', NULL, NULL),
+(106, 8, 'PM', '2023-02-10', NULL, NULL),
+(107, 8, 'PM', '2023-02-10', NULL, NULL),
+(108, 8, 'PM', '2023-02-10', NULL, NULL),
+(109, 8, 'PM', '2023-02-10', NULL, NULL),
+(110, 8, 'CAP', '2023-02-10', NULL, NULL),
+(111, 8, 'CAP', '2023-02-10', NULL, NULL),
+(112, 8, 'CAP', '2023-02-10', NULL, NULL),
+(113, 8, 'CAP', '2023-02-10', NULL, NULL),
+(114, 8, 'CAP', '2023-02-10', NULL, NULL),
+(115, 8, 'CAP', '2023-02-10', NULL, NULL),
+(116, 8, 'CAP', '2023-02-10', NULL, NULL),
+(117, 8, 'CAP', '2023-02-10', NULL, NULL),
+(118, 8, 'TC', '2023-02-10', NULL, NULL),
+(119, 8, 'TC', '2023-02-10', NULL, NULL),
+(120, 8, 'TC', '2023-02-10', NULL, NULL),
+(121, 9, 'PM', '2023-02-10', NULL, NULL),
+(122, 9, 'PM', '2023-02-10', NULL, NULL),
+(123, 9, 'PM', '2023-02-10', NULL, NULL),
+(124, 9, 'PM', '2023-02-10', NULL, NULL),
+(125, 9, 'CAP', '2023-02-10', NULL, NULL),
+(126, 9, 'CAP', '2023-02-10', NULL, NULL),
+(127, 9, 'CAP', '2023-02-10', NULL, NULL),
+(128, 9, 'CAP', '2023-02-10', NULL, NULL),
+(129, 9, 'CAP', '2023-02-10', NULL, NULL),
+(130, 9, 'CAP', '2023-02-10', NULL, NULL),
+(131, 9, 'CAP', '2023-02-10', NULL, NULL),
+(132, 9, 'CAP', '2023-02-10', NULL, NULL),
+(133, 9, 'TC', '2023-02-10', NULL, NULL),
+(134, 9, 'TC', '2023-02-10', NULL, NULL),
+(135, 9, 'TC', '2023-02-10', NULL, NULL),
+(136, 10, 'PM', '2023-02-11', NULL, NULL),
+(137, 10, 'PM', '2023-02-11', NULL, NULL),
+(138, 10, 'PM', '2023-02-11', NULL, NULL),
+(139, 10, 'PM', '2023-02-11', NULL, NULL),
+(140, 10, 'CAP', '2023-02-11', NULL, NULL),
+(141, 10, 'CAP', '2023-02-11', NULL, NULL),
+(142, 10, 'CAP', '2023-02-11', NULL, NULL),
+(143, 10, 'CAP', '2023-02-11', NULL, NULL),
+(144, 10, 'CAP', '2023-02-11', NULL, NULL),
+(145, 10, 'CAP', '2023-02-11', NULL, NULL),
+(146, 10, 'CAP', '2023-02-11', NULL, NULL),
+(147, 10, 'CAP', '2023-02-11', NULL, NULL),
+(148, 10, 'TC', '2023-02-11', NULL, NULL),
+(149, 10, 'TC', '2023-02-11', NULL, NULL),
+(150, 10, 'TC', '2023-02-11', NULL, NULL),
+(151, 11, 'PM', '2023-02-10', NULL, NULL),
+(152, 11, 'PM', '2023-02-10', NULL, NULL),
+(153, 11, 'PM', '2023-02-10', NULL, NULL),
+(154, 11, 'PM', '2023-02-10', NULL, NULL),
+(155, 11, 'PM', '2023-02-10', NULL, NULL),
+(156, 11, 'PM', '2023-02-10', NULL, NULL),
+(157, 11, 'PM', '2023-02-10', NULL, NULL),
+(158, 11, 'PM', '2023-02-10', NULL, NULL),
+(159, 11, 'CAP', '2023-02-10', NULL, NULL),
+(160, 11, 'TC', '2023-02-10', NULL, NULL),
+(161, 11, 'TC', '2023-02-10', NULL, NULL),
+(162, 11, 'TC', '2023-02-10', NULL, NULL),
+(163, 12, 'PM', '2023-02-10', NULL, NULL),
+(164, 12, 'PM', '2023-02-10', NULL, NULL),
+(165, 12, 'PM', '2023-02-10', NULL, NULL),
+(166, 12, 'PM', '2023-02-10', NULL, NULL),
+(167, 12, 'PM', '2023-02-10', NULL, NULL),
+(168, 12, 'PM', '2023-02-10', NULL, NULL),
+(169, 12, 'PM', '2023-02-10', NULL, NULL),
+(170, 12, 'PM', '2023-02-10', NULL, NULL),
+(171, 12, 'CAP', '2023-02-10', NULL, NULL),
+(172, 12, 'TC', '2023-02-10', NULL, NULL),
+(173, 12, 'TC', '2023-02-10', NULL, NULL),
+(174, 12, 'TC', '2023-02-10', NULL, NULL),
+(175, 13, 'PM', '2023-02-10', NULL, NULL),
+(176, 13, 'PM', '2023-02-10', NULL, NULL),
+(177, 13, 'PM', '2023-02-10', NULL, NULL),
+(178, 13, 'PM', '2023-02-10', NULL, NULL),
+(179, 13, 'PM', '2023-02-10', NULL, NULL),
+(180, 13, 'PM', '2023-02-10', NULL, NULL),
+(181, 13, 'PM', '2023-02-10', NULL, NULL),
+(182, 13, 'PM', '2023-02-10', NULL, NULL),
+(183, 13, 'CAP', '2023-02-10', NULL, NULL),
+(184, 13, 'TC', '2023-02-10', NULL, NULL),
+(185, 13, 'TC', '2023-02-10', NULL, NULL),
+(186, 13, 'TC', '2023-02-10', NULL, NULL),
+(187, 14, 'PM', '2023-02-10', NULL, NULL),
+(188, 14, 'PM', '2023-02-10', NULL, NULL),
+(189, 14, 'PM', '2023-02-10', NULL, NULL),
+(190, 14, 'PM', '2023-02-10', NULL, NULL),
+(191, 14, 'PM', '2023-02-10', NULL, NULL),
+(192, 14, 'PM', '2023-02-10', NULL, NULL),
+(193, 14, 'PM', '2023-02-10', NULL, NULL),
+(194, 14, 'PM', '2023-02-10', NULL, NULL),
+(195, 14, 'CAP', '2023-02-10', NULL, NULL),
+(196, 14, 'TC', '2023-02-10', NULL, NULL),
+(197, 14, 'TC', '2023-02-10', NULL, NULL),
+(198, 14, 'TC', '2023-02-10', NULL, NULL),
+(199, 15, 'PM', '2023-02-10', NULL, NULL),
+(200, 15, 'PM', '2023-02-10', NULL, NULL),
+(201, 15, 'PM', '2023-02-10', NULL, NULL),
+(202, 15, 'PM', '2023-02-10', NULL, NULL),
+(203, 15, 'PM', '2023-02-10', NULL, NULL),
+(204, 15, 'PM', '2023-02-10', NULL, NULL),
+(205, 15, 'PM', '2023-02-10', NULL, NULL),
+(206, 15, 'PM', '2023-02-10', NULL, NULL),
+(207, 15, 'CAP', '2023-02-10', NULL, NULL),
+(208, 15, 'TC', '2023-02-10', NULL, NULL),
+(209, 15, 'TC', '2023-02-10', NULL, NULL),
+(210, 15, 'TC', '2023-02-10', NULL, NULL),
+(211, 16, 'PM', '2023-02-10', NULL, NULL),
+(212, 16, 'PM', '2023-02-10', NULL, NULL),
+(213, 16, 'PM', '2023-02-10', NULL, NULL),
+(214, 16, 'PM', '2023-02-10', NULL, NULL),
+(215, 16, 'PM', '2023-02-10', NULL, NULL),
+(216, 16, 'PM', '2023-02-10', NULL, NULL),
+(217, 16, 'PM', '2023-02-10', NULL, NULL),
+(218, 16, 'PM', '2023-02-10', NULL, NULL),
+(219, 16, 'CAP', '2023-02-10', NULL, NULL),
+(220, 16, 'TC', '2023-02-10', NULL, NULL),
+(221, 16, 'TC', '2023-02-10', NULL, NULL),
+(222, 16, 'TC', '2023-02-10', NULL, NULL),
+(223, 17, 'PM', '2023-02-11', NULL, NULL),
+(224, 17, 'PM', '2023-02-11', NULL, NULL),
+(225, 17, 'PM', '2023-02-11', NULL, NULL),
+(226, 17, 'PM', '2023-02-11', NULL, NULL),
+(227, 17, 'PM', '2023-02-11', NULL, NULL),
+(228, 17, 'PM', '2023-02-11', NULL, NULL),
+(229, 17, 'PM', '2023-02-11', NULL, NULL),
+(230, 17, 'PM', '2023-02-11', NULL, NULL),
+(231, 17, 'CAP', '2023-02-11', NULL, NULL),
+(232, 17, 'TC', '2023-02-11', NULL, NULL),
+(233, 17, 'TC', '2023-02-11', NULL, NULL),
+(234, 17, 'TC', '2023-02-11', NULL, NULL),
+(235, 18, 'PM', '2023-02-11', NULL, NULL),
+(236, 18, 'PM', '2023-02-11', NULL, NULL),
+(237, 18, 'PM', '2023-02-11', NULL, NULL),
+(238, 18, 'PM', '2023-02-11', NULL, NULL),
+(239, 18, 'PM', '2023-02-11', NULL, NULL),
+(240, 18, 'PM', '2023-02-11', NULL, NULL),
+(241, 18, 'PM', '2023-02-11', NULL, NULL),
+(242, 18, 'PM', '2023-02-11', NULL, NULL),
+(243, 18, 'CAP', '2023-02-11', NULL, NULL),
+(244, 18, 'TC', '2023-02-11', NULL, NULL),
+(245, 18, 'TC', '2023-02-11', NULL, NULL),
+(246, 18, 'TC', '2023-02-11', NULL, NULL),
+(247, 19, 'PM', '2023-02-11', NULL, NULL),
+(248, 19, 'PM', '2023-02-11', NULL, NULL),
+(249, 19, 'PM', '2023-02-11', NULL, NULL),
+(250, 19, 'PM', '2023-02-11', NULL, NULL),
+(251, 19, 'PM', '2023-02-11', NULL, NULL),
+(252, 19, 'PM', '2023-02-11', NULL, NULL),
+(253, 19, 'PM', '2023-02-11', NULL, NULL),
+(254, 19, 'PM', '2023-02-11', NULL, NULL),
+(255, 19, 'CAP', '2023-02-11', NULL, NULL),
+(256, 19, 'TC', '2023-02-11', NULL, NULL),
+(257, 19, 'TC', '2023-02-11', NULL, NULL),
+(258, 19, 'TC', '2023-02-11', NULL, NULL),
+(259, 20, 'PM', '2023-02-11', NULL, NULL),
+(260, 20, 'PM', '2023-02-11', NULL, NULL),
+(261, 20, 'PM', '2023-02-11', NULL, NULL),
+(262, 20, 'PM', '2023-02-11', NULL, NULL),
+(263, 20, 'PM', '2023-02-11', NULL, NULL),
+(264, 20, 'PM', '2023-02-11', NULL, NULL),
+(265, 20, 'PM', '2023-02-11', NULL, NULL),
+(266, 20, 'PM', '2023-02-11', NULL, NULL),
+(267, 20, 'CAP', '2023-02-11', NULL, NULL),
+(268, 20, 'TC', '2023-02-11', NULL, NULL),
+(269, 20, 'TC', '2023-02-11', NULL, NULL),
+(270, 20, 'TC', '2023-02-11', NULL, NULL),
+(271, 21, 'PM', '2023-02-11', NULL, NULL),
+(272, 21, 'PM', '2023-02-11', NULL, NULL),
+(273, 21, 'PM', '2023-02-11', NULL, NULL),
+(274, 21, 'PM', '2023-02-11', NULL, NULL),
+(275, 21, 'AUX', '2023-02-11', NULL, NULL),
+(276, 21, 'AUX', '2023-02-11', NULL, NULL),
+(277, 21, 'AUX', '2023-02-11', NULL, NULL),
+(278, 21, 'AUX', '2023-02-11', NULL, NULL),
+(279, 21, 'AUX', '2023-02-11', NULL, NULL),
+(280, 21, 'AUX', '2023-02-11', NULL, NULL),
+(281, 21, 'AUX', '2023-02-11', NULL, NULL),
+(282, 21, 'AUX', '2023-02-11', NULL, NULL),
+(283, 21, 'TC', '2023-02-11', NULL, NULL),
+(284, 21, 'TC', '2023-02-11', NULL, NULL),
+(285, 21, 'TC', '2023-02-11', NULL, NULL),
+(286, 22, 'PM', '2023-02-11', NULL, NULL),
+(287, 22, 'PM', '2023-02-11', NULL, NULL),
+(288, 22, 'PM', '2023-02-11', NULL, NULL),
+(289, 22, 'PM', '2023-02-11', NULL, NULL),
+(290, 22, 'AUX', '2023-02-11', NULL, NULL),
+(291, 22, 'AUX', '2023-02-11', NULL, NULL),
+(292, 22, 'AUX', '2023-02-11', NULL, NULL),
+(293, 22, 'AUX', '2023-02-11', NULL, NULL),
+(294, 22, 'AUX', '2023-02-11', NULL, NULL),
+(295, 22, 'AUX', '2023-02-11', NULL, NULL),
+(296, 22, 'AUX', '2023-02-11', NULL, NULL),
+(297, 22, 'AUX', '2023-02-11', NULL, NULL),
+(298, 22, 'TC', '2023-02-11', NULL, NULL),
+(299, 22, 'TC', '2023-02-11', NULL, NULL),
+(300, 22, 'TC', '2023-02-11', NULL, NULL),
+(301, 23, 'PM', '2023-02-11', NULL, NULL),
+(302, 23, 'PM', '2023-02-11', NULL, NULL),
+(303, 23, 'PM', '2023-02-11', NULL, NULL),
+(304, 23, 'PM', '2023-02-11', NULL, NULL),
+(305, 23, 'AUX', '2023-02-11', NULL, NULL),
+(306, 23, 'AUX', '2023-02-11', NULL, NULL),
+(307, 23, 'AUX', '2023-02-11', NULL, NULL),
+(308, 23, 'AUX', '2023-02-11', NULL, NULL),
+(309, 23, 'AUX', '2023-02-11', NULL, NULL),
+(310, 23, 'AUX', '2023-02-11', NULL, NULL),
+(311, 23, 'AUX', '2023-02-11', NULL, NULL),
+(312, 23, 'AUX', '2023-02-11', NULL, NULL),
+(313, 23, 'TC', '2023-02-11', NULL, NULL),
+(314, 23, 'TC', '2023-02-11', NULL, NULL),
+(315, 23, 'TC', '2023-02-11', NULL, NULL),
+(316, 24, 'PM', '2023-02-11', NULL, NULL),
+(317, 24, 'PM', '2023-02-11', NULL, NULL),
+(318, 24, 'PM', '2023-02-11', NULL, NULL),
+(319, 24, 'PM', '2023-02-11', NULL, NULL),
+(320, 24, 'AUX', '2023-02-11', NULL, NULL),
+(321, 24, 'AUX', '2023-02-11', NULL, NULL),
+(322, 24, 'AUX', '2023-02-11', NULL, NULL),
+(323, 24, 'AUX', '2023-02-11', NULL, NULL),
+(324, 24, 'AUX', '2023-02-11', NULL, NULL),
+(325, 24, 'AUX', '2023-02-11', NULL, NULL),
+(326, 24, 'AUX', '2023-02-11', NULL, NULL),
+(327, 24, 'AUX', '2023-02-11', NULL, NULL),
+(328, 24, 'TC', '2023-02-11', NULL, NULL),
+(329, 24, 'TC', '2023-02-11', NULL, NULL),
+(330, 24, 'TC', '2023-02-11', NULL, NULL),
+(331, 25, 'PM', '2023-02-11', NULL, NULL),
+(332, 25, 'PM', '2023-02-11', NULL, NULL),
+(333, 25, 'PM', '2023-02-11', NULL, NULL),
+(334, 25, 'PM', '2023-02-11', NULL, NULL),
+(335, 25, 'AUX', '2023-02-11', NULL, NULL),
+(336, 25, 'AUX', '2023-02-11', NULL, NULL),
+(337, 25, 'AUX', '2023-02-11', NULL, NULL),
+(338, 25, 'AUX', '2023-02-11', NULL, NULL),
+(339, 25, 'AUX', '2023-02-11', NULL, NULL),
+(340, 25, 'AUX', '2023-02-11', NULL, NULL),
+(341, 25, 'AUX', '2023-02-11', NULL, NULL),
+(342, 25, 'AUX', '2023-02-11', NULL, NULL),
+(343, 25, 'TC', '2023-02-11', NULL, NULL),
+(344, 25, 'TC', '2023-02-11', NULL, NULL),
+(345, 25, 'TC', '2023-02-11', NULL, NULL),
+(346, 26, 'PM', '2023-02-11', NULL, NULL),
+(347, 26, 'PM', '2023-02-11', NULL, NULL),
+(348, 26, 'PM', '2023-02-11', NULL, NULL),
+(349, 26, 'PM', '2023-02-11', NULL, NULL),
+(350, 26, 'AUX', '2023-02-11', NULL, NULL),
+(351, 26, 'AUX', '2023-02-11', NULL, NULL),
+(352, 26, 'AUX', '2023-02-11', NULL, NULL),
+(353, 26, 'AUX', '2023-02-11', NULL, NULL),
+(354, 26, 'AUX', '2023-02-11', NULL, NULL),
+(355, 26, 'AUX', '2023-02-11', NULL, NULL),
+(356, 26, 'AUX', '2023-02-11', NULL, NULL),
+(357, 26, 'AUX', '2023-02-11', NULL, NULL),
+(358, 26, 'TC', '2023-02-11', NULL, NULL),
+(359, 26, 'TC', '2023-02-11', NULL, NULL),
+(360, 26, 'TC', '2023-02-11', NULL, NULL),
+(361, 27, 'PM', '2023-02-11', NULL, NULL),
+(362, 27, 'PM', '2023-02-11', NULL, NULL),
+(363, 27, 'PM', '2023-02-11', NULL, NULL),
+(364, 27, 'PM', '2023-02-11', NULL, NULL),
+(365, 27, 'AUX', '2023-02-11', NULL, NULL),
+(366, 27, 'AUX', '2023-02-11', NULL, NULL),
+(367, 27, 'AUX', '2023-02-11', NULL, NULL),
+(368, 27, 'AUX', '2023-02-11', NULL, NULL),
+(369, 27, 'AUX', '2023-02-11', NULL, NULL),
+(370, 27, 'AUX', '2023-02-11', NULL, NULL),
+(371, 27, 'AUX', '2023-02-11', NULL, NULL),
+(372, 27, 'AUX', '2023-02-11', NULL, NULL),
+(373, 27, 'TC', '2023-02-11', NULL, NULL),
+(374, 27, 'TC', '2023-02-11', NULL, NULL),
+(375, 27, 'TC', '2023-02-11', NULL, NULL),
+(376, 28, 'PM', '2023-02-11', NULL, NULL),
+(377, 28, 'PM', '2023-02-11', NULL, NULL),
+(378, 28, 'PM', '2023-02-11', NULL, NULL),
+(379, 28, 'PM', '2023-02-11', NULL, NULL),
+(380, 28, 'AUX', '2023-02-11', NULL, NULL),
+(381, 28, 'AUX', '2023-02-11', NULL, NULL),
+(382, 28, 'AUX', '2023-02-11', NULL, NULL),
+(383, 28, 'AUX', '2023-02-11', NULL, NULL),
+(384, 28, 'AUX', '2023-02-11', NULL, NULL),
+(385, 28, 'AUX', '2023-02-11', NULL, NULL),
+(386, 28, 'AUX', '2023-02-11', NULL, NULL),
+(387, 28, 'AUX', '2023-02-11', NULL, NULL),
+(388, 28, 'TC', '2023-02-11', NULL, NULL),
+(389, 28, 'TC', '2023-02-11', NULL, NULL),
+(390, 28, 'TC', '2023-02-11', NULL, NULL),
+(391, 29, 'PM', '2023-02-11', NULL, NULL),
+(392, 29, 'PM', '2023-02-11', NULL, NULL),
+(393, 29, 'PM', '2023-02-11', NULL, NULL),
+(394, 29, 'PM', '2023-02-11', NULL, NULL),
+(395, 29, 'AUX', '2023-02-11', NULL, NULL),
+(396, 29, 'AUX', '2023-02-11', NULL, NULL),
+(397, 29, 'AUX', '2023-02-11', NULL, NULL),
+(398, 29, 'AUX', '2023-02-11', NULL, NULL),
+(399, 29, 'AUX', '2023-02-11', NULL, NULL),
+(400, 29, 'AUX', '2023-02-11', NULL, NULL),
+(401, 29, 'AUX', '2023-02-11', NULL, NULL),
+(402, 29, 'AUX', '2023-02-11', NULL, NULL),
+(403, 29, 'TC', '2023-02-11', NULL, NULL),
+(404, 29, 'TC', '2023-02-11', NULL, NULL),
+(405, 29, 'TC', '2023-02-11', NULL, NULL),
+(406, 30, 'PM', '2023-02-11', NULL, NULL),
+(407, 30, 'PM', '2023-02-11', NULL, NULL),
+(408, 30, 'PM', '2023-02-11', NULL, NULL),
+(409, 30, 'PM', '2023-02-11', NULL, NULL),
+(410, 30, 'AUX', '2023-02-11', NULL, NULL),
+(411, 30, 'AUX', '2023-02-11', NULL, NULL),
+(412, 30, 'AUX', '2023-02-11', NULL, NULL),
+(413, 30, 'AUX', '2023-02-11', NULL, NULL),
+(414, 30, 'AUX', '2023-02-11', NULL, NULL),
+(415, 30, 'AUX', '2023-02-11', NULL, NULL),
+(416, 30, 'AUX', '2023-02-11', NULL, NULL),
+(417, 30, 'AUX', '2023-02-11', NULL, NULL),
+(418, 30, 'TC', '2023-02-11', NULL, NULL),
+(419, 30, 'TC', '2023-02-11', NULL, NULL),
+(420, 30, 'TC', '2023-02-11', NULL, NULL),
+(421, 31, 'PM', '2023-02-11', NULL, NULL),
+(422, 31, 'PM', '2023-02-11', NULL, NULL),
+(423, 31, 'PM', '2023-02-11', NULL, NULL),
+(424, 31, 'PM', '2023-02-11', NULL, NULL),
+(425, 31, 'CAP', '2023-02-11', NULL, NULL),
+(426, 31, 'VCU', '2023-02-11', NULL, NULL),
+(427, 31, 'VCU', '2023-02-11', NULL, NULL),
+(428, 31, 'VCU', '2023-02-11', NULL, NULL),
+(429, 32, 'PM', '2023-02-11', NULL, NULL),
+(430, 32, 'PM', '2023-02-11', NULL, NULL),
+(431, 32, 'PM', '2023-02-11', NULL, NULL),
+(432, 32, 'PM', '2023-02-11', NULL, NULL),
+(433, 32, 'CAP', '2023-02-11', NULL, NULL),
+(434, 32, 'VCU', '2023-02-11', NULL, NULL),
+(435, 32, 'VCU', '2023-02-11', NULL, NULL),
+(436, 32, 'VCU', '2023-02-11', NULL, NULL),
+(437, 33, 'PM', '2023-02-11', NULL, NULL),
+(438, 33, 'PM', '2023-02-11', NULL, NULL),
+(439, 33, 'PM', '2023-02-11', NULL, NULL),
+(440, 33, 'PM', '2023-02-11', NULL, NULL),
+(441, 33, 'CAP', '2023-02-11', NULL, NULL),
+(442, 33, 'VCU', '2023-02-11', NULL, NULL),
+(443, 33, 'VCU', '2023-02-11', NULL, NULL),
+(444, 33, 'VCU', '2023-02-11', NULL, NULL),
+(445, 34, 'PM', '2023-02-11', NULL, NULL),
+(446, 34, 'PM', '2023-02-11', NULL, NULL),
+(447, 34, 'PM', '2023-02-11', NULL, NULL),
+(448, 34, 'PM', '2023-02-11', NULL, NULL),
+(449, 34, 'CAP', '2023-02-11', NULL, NULL),
+(450, 34, 'VCU', '2023-02-11', NULL, NULL),
+(451, 34, 'VCU', '2023-02-11', NULL, NULL),
+(452, 34, 'VCU', '2023-02-11', NULL, NULL),
+(453, 35, 'PM', '2023-02-11', NULL, NULL),
+(454, 35, 'PM', '2023-02-11', NULL, NULL),
+(455, 35, 'PM', '2023-02-11', NULL, NULL),
+(456, 35, 'PM', '2023-02-11', NULL, NULL),
+(457, 35, 'CAP', '2023-02-11', NULL, NULL),
+(458, 35, 'VCU', '2023-02-11', NULL, NULL),
+(459, 35, 'VCU', '2023-02-11', NULL, NULL),
+(460, 35, 'VCU', '2023-02-11', NULL, NULL),
+(461, 36, 'PM', '2023-02-11', NULL, NULL),
+(462, 36, 'PM', '2023-02-11', NULL, NULL),
+(463, 36, 'PM', '2023-02-11', NULL, NULL),
+(464, 36, 'PM', '2023-02-11', NULL, NULL),
+(465, 36, 'CAP', '2023-02-11', NULL, NULL),
+(466, 36, 'VCU', '2023-02-11', NULL, NULL),
+(467, 36, 'VCU', '2023-02-11', NULL, NULL),
+(468, 36, 'VCU', '2023-02-11', NULL, NULL),
+(469, 37, 'PM', '2023-02-11', NULL, NULL),
+(470, 37, 'PM', '2023-02-11', NULL, NULL),
+(471, 37, 'PM', '2023-02-11', NULL, NULL),
+(472, 37, 'PM', '2023-02-11', NULL, NULL),
+(473, 37, 'CAP', '2023-02-11', NULL, NULL),
+(474, 37, 'VCU', '2023-02-11', NULL, NULL),
+(475, 37, 'VCU', '2023-02-11', NULL, NULL),
+(476, 37, 'VCU', '2023-02-11', NULL, NULL),
+(477, 38, 'PM', '2023-02-16', NULL, NULL),
+(478, 38, 'PM', '2023-02-16', NULL, NULL),
+(479, 38, 'PM', '2023-02-16', NULL, NULL),
+(480, 38, 'PM', '2023-02-16', NULL, NULL),
+(481, 38, 'CAP', '2023-02-16', NULL, NULL),
+(482, 38, 'VCU', '2023-02-16', NULL, NULL),
+(483, 38, 'VCU', '2023-02-16', NULL, NULL),
+(484, 38, 'VCU', '2023-02-16', NULL, NULL),
+(485, 39, 'PM', '2023-02-16', NULL, NULL),
+(486, 39, 'PM', '2023-02-16', NULL, NULL),
+(487, 39, 'PM', '2023-02-16', NULL, NULL),
+(488, 39, 'PM', '2023-02-16', NULL, NULL),
+(489, 39, 'CAP', '2023-02-16', NULL, NULL),
+(490, 39, 'VCU', '2023-02-16', NULL, NULL),
+(491, 39, 'VCU', '2023-02-16', NULL, NULL),
+(492, 39, 'VCU', '2023-02-16', NULL, NULL),
+(493, 40, 'PM', NULL, NULL, NULL),
+(494, 40, 'PM', NULL, NULL, NULL),
+(495, 40, 'PM', NULL, NULL, NULL),
+(496, 40, 'PM', NULL, NULL, NULL),
+(497, 40, 'CAP', NULL, NULL, NULL),
+(498, 40, 'VCU', NULL, NULL, NULL),
+(499, 40, 'VCU', NULL, NULL, NULL),
+(500, 40, 'VCU', NULL, NULL, NULL),
+(501, 41, 'CAP', '2023-02-10', NULL, NULL),
+(502, 41, 'TC', '2023-02-10', NULL, NULL),
+(503, 41, 'AUX', '2023-02-10', NULL, NULL),
+(504, 42, 'CAP', '2023-02-10', NULL, NULL),
+(505, 42, 'TC', '2023-02-10', NULL, NULL),
+(506, 42, 'AUX', '2023-02-10', NULL, NULL),
+(507, 43, 'CAP', '2023-02-10', NULL, NULL),
+(508, 43, 'TC', '2023-02-10', NULL, NULL),
+(509, 43, 'AUX', '2023-02-10', NULL, NULL),
+(510, 44, 'CAP', '2023-02-11', NULL, NULL),
+(511, 44, 'TC', '2023-02-11', NULL, NULL),
+(512, 44, 'AUX', '2023-02-11', NULL, NULL),
+(513, 45, 'CAP', '2023-02-11', NULL, NULL),
+(514, 45, 'TC', '2023-02-11', NULL, NULL),
+(515, 45, 'AUX', '2023-02-11', NULL, NULL),
+(516, 46, 'CAP', '2023-02-11', NULL, NULL),
+(517, 46, 'TC', '2023-02-11', NULL, NULL),
+(518, 46, 'AUX', '2023-02-11', NULL, NULL),
+(519, 47, 'CAP', '2023-02-11', NULL, NULL),
+(520, 47, 'TC', '2023-02-11', NULL, NULL),
+(521, 47, 'AUX', '2023-02-11', NULL, NULL),
+(522, 48, 'CAP', '2023-02-11', NULL, NULL),
+(523, 48, 'TC', '2023-02-11', NULL, NULL),
+(524, 48, 'AUX', '2023-02-11', NULL, NULL),
+(525, 49, 'CAP', '2023-02-11', NULL, NULL),
+(526, 49, 'TC', '2023-02-11', NULL, NULL),
+(527, 49, 'AUX', '2023-02-11', NULL, NULL),
+(528, 50, 'CAP', '2023-02-11', NULL, NULL),
+(529, 50, 'TC', '2023-02-11', NULL, NULL),
+(530, 50, 'AUX', '2023-02-11', NULL, NULL),
+(531, 51, 'PM', '2023-02-16', NULL, NULL),
+(532, 51, 'PM', '2023-02-16', NULL, NULL),
+(533, 51, 'PM', '2023-02-16', NULL, NULL),
+(534, 51, 'PM', '2023-02-16', NULL, NULL),
+(535, 51, 'CAP', '2023-02-16', NULL, NULL),
+(536, 51, 'CAP', '2023-02-16', NULL, NULL),
+(537, 51, 'CAP', '2023-02-16', NULL, NULL),
+(538, 51, 'CAP', '2023-02-16', NULL, NULL),
+(539, 51, 'CAP', '2023-02-16', NULL, NULL),
+(540, 51, 'CAP', '2023-02-16', NULL, NULL),
+(541, 51, 'CAP', '2023-02-16', NULL, NULL),
+(542, 51, 'CAP', '2023-02-16', NULL, NULL),
+(543, 51, 'TC', '2023-02-16', NULL, NULL),
+(544, 51, 'TC', '2023-02-16', NULL, NULL),
+(545, 51, 'TC', '2023-02-16', NULL, NULL),
+(546, 52, 'PM', '2023-02-16', NULL, NULL),
+(547, 52, 'PM', '2023-02-16', NULL, NULL),
+(548, 52, 'PM', '2023-02-16', NULL, NULL),
+(549, 52, 'PM', '2023-02-16', NULL, NULL),
+(550, 52, 'PM', '2023-02-16', NULL, NULL),
+(551, 52, 'PM', '2023-02-16', NULL, NULL),
+(552, 52, 'PM', '2023-02-16', NULL, NULL),
+(553, 52, 'PM', '2023-02-16', NULL, NULL),
+(554, 52, 'CAP', '2023-02-16', NULL, NULL),
+(555, 52, 'TC', '2023-02-16', NULL, NULL),
+(556, 52, 'TC', '2023-02-16', NULL, NULL),
+(557, 52, 'TC', '2023-02-16', NULL, NULL),
+(558, 53, 'PM', '2023-02-16', NULL, NULL),
+(559, 53, 'PM', '2023-02-16', NULL, NULL),
+(560, 53, 'PM', '2023-02-16', NULL, NULL),
+(561, 53, 'PM', '2023-02-16', NULL, NULL),
+(562, 53, 'CAP', '2023-02-16', NULL, NULL),
+(563, 53, 'CAP', '2023-02-16', NULL, NULL),
+(564, 53, 'CAP', '2023-02-16', NULL, NULL),
+(565, 53, 'CAP', '2023-02-16', NULL, NULL),
+(566, 53, 'CAP', '2023-02-16', NULL, NULL),
+(567, 53, 'CAP', '2023-02-16', NULL, NULL),
+(568, 53, 'CAP', '2023-02-16', NULL, NULL),
+(569, 53, 'CAP', '2023-02-16', NULL, NULL),
+(570, 53, 'TC', '2023-02-16', NULL, NULL),
+(571, 53, 'TC', '2023-02-16', NULL, NULL),
+(572, 53, 'TC', '2023-02-16', NULL, NULL),
+(573, 54, 'PM', '2023-02-16', NULL, NULL),
+(574, 54, 'PM', '2023-02-16', NULL, NULL),
+(575, 54, 'PM', '2023-02-16', NULL, NULL),
+(576, 54, 'PM', '2023-02-16', NULL, NULL),
+(577, 54, 'PM', '2023-02-16', NULL, NULL),
+(578, 54, 'PM', '2023-02-16', NULL, NULL),
+(579, 54, 'PM', '2023-02-16', NULL, NULL),
+(580, 54, 'PM', '2023-02-16', NULL, NULL),
+(581, 54, 'CAP', '2023-02-16', NULL, NULL),
+(582, 54, 'TC', '2023-02-16', NULL, NULL),
+(583, 54, 'TC', '2023-02-16', NULL, NULL),
+(584, 54, 'TC', '2023-02-16', NULL, NULL),
+(585, 55, 'PM', '2023-02-16', NULL, NULL),
+(586, 55, 'PM', '2023-02-16', NULL, NULL),
+(587, 55, 'PM', '2023-02-16', NULL, NULL),
+(588, 55, 'PM', '2023-02-16', NULL, NULL),
+(589, 55, 'AUX', '2023-02-16', NULL, NULL),
+(590, 55, 'AUX', '2023-02-16', NULL, NULL),
+(591, 55, 'AUX', '2023-02-16', NULL, NULL),
+(592, 55, 'AUX', '2023-02-16', NULL, NULL),
+(593, 55, 'AUX', '2023-02-16', NULL, NULL),
+(594, 55, 'AUX', '2023-02-16', NULL, NULL),
+(595, 55, 'AUX', '2023-02-16', NULL, NULL),
+(596, 55, 'AUX', '2023-02-16', NULL, NULL),
+(597, 55, 'TC', '2023-02-16', NULL, NULL),
+(598, 55, 'TC', '2023-02-16', NULL, NULL),
+(599, 55, 'TC', '2023-02-16', NULL, NULL),
+(600, 56, 'PM', NULL, NULL, NULL),
+(601, 56, 'PM', NULL, NULL, NULL),
+(602, 56, 'PM', NULL, NULL, NULL),
+(603, 56, 'PM', NULL, NULL, NULL),
+(604, 56, 'CAP', NULL, NULL, NULL),
+(605, 56, 'VCU', NULL, NULL, NULL),
+(606, 56, 'VCU', NULL, NULL, NULL),
+(607, 56, 'VCU', NULL, NULL, NULL),
+(608, 57, 'CAP', '2023-02-16', NULL, NULL),
+(609, 57, 'TC', '2023-02-16', NULL, NULL),
+(610, 57, 'AUX', '2023-02-16', NULL, NULL),
+(611, 58, 'CAP', '2023-02-16', NULL, NULL),
+(612, 58, 'TC', '2023-02-16', NULL, NULL),
+(613, 58, 'AUX', '2023-02-16', NULL, NULL),
+(614, 59, 'CAP', NULL, NULL, NULL),
+(615, 59, 'TC', NULL, NULL, NULL),
+(616, 59, 'AUX', NULL, NULL, NULL),
+(617, 60, 'CAP', NULL, NULL, NULL),
+(618, 60, 'TC', NULL, NULL, NULL),
+(619, 60, 'AUX', NULL, NULL, NULL),
+(620, 61, 'CAP', NULL, NULL, NULL),
+(621, 61, 'TC', NULL, NULL, NULL),
+(622, 61, 'AUX', NULL, NULL, NULL),
+(623, 62, 'CAP', NULL, NULL, NULL),
+(624, 62, 'TC', NULL, NULL, NULL),
+(625, 62, 'AUX', NULL, NULL, NULL),
+(626, 63, 'CAP', NULL, NULL, NULL),
+(627, 63, 'TC', NULL, NULL, NULL),
+(628, 63, 'AUX', NULL, NULL, NULL),
+(629, 64, 'CAP', NULL, NULL, NULL),
+(630, 64, 'TC', NULL, NULL, NULL),
+(631, 64, 'AUX', NULL, NULL, NULL),
+(632, 65, 'PM', '2023-02-16', NULL, NULL),
+(633, 65, 'PM', '2023-02-16', NULL, NULL),
+(634, 65, 'PM', '2023-02-16', NULL, NULL),
+(635, 65, 'PM', '2023-02-16', NULL, NULL),
+(636, 65, 'PM', '2023-02-16', NULL, NULL),
+(637, 65, 'PM', '2023-02-16', NULL, NULL),
+(638, 65, 'PM', '2023-02-16', NULL, NULL),
+(639, 65, 'PM', '2023-02-16', NULL, NULL),
+(640, 65, 'CAP', '2023-02-16', NULL, NULL),
+(641, 65, 'TC', '2023-02-16', NULL, NULL),
+(642, 65, 'TC', '2023-02-16', NULL, NULL),
+(643, 65, 'TC', '2023-02-16', NULL, NULL),
+(644, 66, 'PM', NULL, NULL, NULL),
+(645, 66, 'PM', NULL, NULL, NULL),
+(646, 66, 'PM', NULL, NULL, NULL),
+(647, 66, 'PM', NULL, NULL, NULL),
+(648, 66, 'PM', NULL, NULL, NULL),
+(649, 66, 'PM', NULL, NULL, NULL),
+(650, 66, 'PM', NULL, NULL, NULL),
+(651, 66, 'PM', NULL, NULL, NULL),
+(652, 66, 'CAP', NULL, NULL, NULL),
+(653, 66, 'TC', NULL, NULL, NULL),
+(654, 66, 'TC', NULL, NULL, NULL),
+(655, 66, 'TC', NULL, NULL, NULL),
+(656, 67, 'PM', NULL, NULL, NULL),
+(657, 67, 'PM', NULL, NULL, NULL),
+(658, 67, 'PM', NULL, NULL, NULL),
+(659, 67, 'PM', NULL, NULL, NULL),
+(660, 67, 'PM', NULL, NULL, NULL),
+(661, 67, 'PM', NULL, NULL, NULL),
+(662, 67, 'PM', NULL, NULL, NULL),
+(663, 67, 'PM', NULL, NULL, NULL),
+(664, 67, 'CAP', NULL, NULL, NULL),
+(665, 67, 'TC', NULL, NULL, NULL),
+(666, 67, 'TC', NULL, NULL, NULL),
+(667, 67, 'TC', NULL, NULL, NULL),
+(668, 68, 'PM', NULL, NULL, NULL),
+(669, 68, 'PM', NULL, NULL, NULL),
+(670, 68, 'PM', NULL, NULL, NULL),
+(671, 68, 'PM', NULL, NULL, NULL),
+(672, 68, 'PM', NULL, NULL, NULL),
+(673, 68, 'PM', NULL, NULL, NULL),
+(674, 68, 'PM', NULL, NULL, NULL),
+(675, 68, 'PM', NULL, NULL, NULL),
+(676, 68, 'CAP', NULL, NULL, NULL),
+(677, 68, 'TC', NULL, NULL, NULL),
+(678, 68, 'TC', NULL, NULL, NULL),
+(679, 68, 'TC', NULL, NULL, NULL),
+(680, 69, 'PM', NULL, NULL, NULL),
+(681, 69, 'PM', NULL, NULL, NULL),
+(682, 69, 'PM', NULL, NULL, NULL),
+(683, 69, 'PM', NULL, NULL, NULL),
+(684, 69, 'PM', NULL, NULL, NULL),
+(685, 69, 'PM', NULL, NULL, NULL),
+(686, 69, 'PM', NULL, NULL, NULL),
+(687, 69, 'PM', NULL, NULL, NULL),
+(688, 69, 'CAP', NULL, NULL, NULL),
+(689, 69, 'TC', NULL, NULL, NULL),
+(690, 69, 'TC', NULL, NULL, NULL),
+(691, 69, 'TC', NULL, NULL, NULL),
+(692, 70, 'PM', NULL, NULL, NULL),
+(693, 70, 'PM', NULL, NULL, NULL),
+(694, 70, 'PM', NULL, NULL, NULL),
+(695, 70, 'PM', NULL, NULL, NULL),
+(696, 70, 'AUX', NULL, NULL, NULL),
+(697, 70, 'AUX', NULL, NULL, NULL),
+(698, 70, 'AUX', NULL, NULL, NULL),
+(699, 70, 'AUX', NULL, NULL, NULL),
+(700, 70, 'AUX', NULL, NULL, NULL),
+(701, 70, 'AUX', NULL, NULL, NULL),
+(702, 70, 'AUX', NULL, NULL, NULL),
+(703, 70, 'AUX', NULL, NULL, NULL),
+(704, 70, 'TC', NULL, NULL, NULL),
+(705, 70, 'TC', NULL, NULL, NULL),
+(706, 70, 'TC', NULL, NULL, NULL),
+(707, 71, 'PM', NULL, NULL, NULL),
+(708, 71, 'PM', NULL, NULL, NULL),
+(709, 71, 'PM', NULL, NULL, NULL),
+(710, 71, 'PM', NULL, NULL, NULL),
+(711, 71, 'AUX', NULL, NULL, NULL),
+(712, 71, 'AUX', NULL, NULL, NULL),
+(713, 71, 'AUX', NULL, NULL, NULL),
+(714, 71, 'AUX', NULL, NULL, NULL),
+(715, 71, 'AUX', NULL, NULL, NULL),
+(716, 71, 'AUX', NULL, NULL, NULL),
+(717, 71, 'AUX', NULL, NULL, NULL),
+(718, 71, 'AUX', NULL, NULL, NULL),
+(719, 71, 'TC', NULL, NULL, NULL),
+(720, 71, 'TC', NULL, NULL, NULL),
+(721, 71, 'TC', NULL, NULL, NULL),
+(722, 72, 'PM', NULL, NULL, NULL),
+(723, 72, 'PM', NULL, NULL, NULL),
+(724, 72, 'PM', NULL, NULL, NULL),
+(725, 72, 'PM', NULL, NULL, NULL),
+(726, 72, 'AUX', NULL, NULL, NULL),
+(727, 72, 'AUX', NULL, NULL, NULL),
+(728, 72, 'AUX', NULL, NULL, NULL),
+(729, 72, 'AUX', NULL, NULL, NULL),
+(730, 72, 'AUX', NULL, NULL, NULL),
+(731, 72, 'AUX', NULL, NULL, NULL),
+(732, 72, 'AUX', NULL, NULL, NULL),
+(733, 72, 'AUX', NULL, NULL, NULL),
+(734, 72, 'TC', NULL, NULL, NULL),
+(735, 72, 'TC', NULL, NULL, NULL),
+(736, 72, 'TC', NULL, NULL, NULL),
+(737, 73, 'PM', NULL, NULL, NULL),
+(738, 73, 'PM', NULL, NULL, NULL),
+(739, 73, 'PM', NULL, NULL, NULL),
+(740, 73, 'PM', NULL, NULL, NULL),
+(741, 73, 'AUX', NULL, NULL, NULL),
+(742, 73, 'AUX', NULL, NULL, NULL),
+(743, 73, 'AUX', NULL, NULL, NULL),
+(744, 73, 'AUX', NULL, NULL, NULL),
+(745, 73, 'AUX', NULL, NULL, NULL),
+(746, 73, 'AUX', NULL, NULL, NULL),
+(747, 73, 'AUX', NULL, NULL, NULL),
+(748, 73, 'AUX', NULL, NULL, NULL),
+(749, 73, 'TC', NULL, NULL, NULL),
+(750, 73, 'TC', NULL, NULL, NULL),
+(751, 73, 'TC', NULL, NULL, NULL),
+(752, 74, 'PM', NULL, NULL, NULL),
+(753, 74, 'PM', NULL, NULL, NULL),
+(754, 74, 'PM', NULL, NULL, NULL),
+(755, 74, 'PM', NULL, NULL, NULL),
+(756, 74, 'CAP', NULL, NULL, NULL),
+(757, 74, 'VCU', NULL, NULL, NULL),
+(758, 74, 'VCU', NULL, NULL, NULL),
+(759, 74, 'VCU', NULL, NULL, NULL),
+(760, 75, 'PM', NULL, NULL, NULL),
+(761, 75, 'PM', NULL, NULL, NULL),
+(762, 75, 'PM', NULL, NULL, NULL),
+(763, 75, 'PM', NULL, NULL, NULL),
+(764, 75, 'CAP', NULL, NULL, NULL),
+(765, 75, 'VCU', NULL, NULL, NULL),
+(766, 75, 'VCU', NULL, NULL, NULL),
+(767, 75, 'VCU', NULL, NULL, NULL),
+(768, 76, 'CAP', NULL, NULL, NULL),
+(769, 76, 'TC', NULL, NULL, NULL),
+(770, 76, 'AUX', NULL, NULL, NULL),
+(771, 77, 'CAP', NULL, NULL, NULL),
+(772, 77, 'TC', NULL, NULL, NULL),
+(773, 77, 'AUX', NULL, NULL, NULL),
+(774, 78, 'CAP', NULL, NULL, NULL),
+(775, 78, 'TC', NULL, NULL, NULL),
+(776, 78, 'AUX', NULL, NULL, NULL),
+(777, 79, 'CAP', NULL, NULL, NULL),
+(778, 79, 'TC', NULL, NULL, NULL),
+(779, 79, 'AUX', NULL, NULL, NULL),
+(780, 80, 'PM', '2023-02-16', NULL, NULL),
+(781, 80, 'PM', '2023-02-16', NULL, NULL),
+(782, 80, 'PM', '2023-02-16', NULL, NULL),
+(783, 80, 'PM', '2023-02-16', NULL, NULL),
+(784, 80, 'CAP', '2023-02-16', NULL, NULL),
+(785, 80, 'CAP', '2023-02-16', NULL, NULL),
+(786, 80, 'CAP', '2023-02-16', NULL, NULL),
+(787, 80, 'CAP', '2023-02-16', NULL, NULL),
+(788, 80, 'CAP', '2023-02-16', NULL, NULL),
+(789, 80, 'CAP', '2023-02-16', NULL, NULL),
+(790, 80, 'CAP', '2023-02-16', NULL, NULL),
+(791, 80, 'CAP', '2023-02-16', NULL, NULL),
+(792, 80, 'TC', '2023-02-16', NULL, NULL),
+(793, 80, 'TC', '2023-02-16', NULL, NULL),
+(794, 80, 'TC', '2023-02-16', NULL, NULL),
+(795, 81, 'PM', '2023-02-16', NULL, NULL),
+(796, 81, 'PM', '2023-02-16', NULL, NULL),
+(797, 81, 'PM', '2023-02-16', NULL, NULL),
+(798, 81, 'PM', '2023-02-16', NULL, NULL),
+(799, 81, 'CAP', '2023-02-16', NULL, NULL),
+(800, 81, 'CAP', '2023-02-16', NULL, NULL),
+(801, 81, 'CAP', '2023-02-16', NULL, NULL),
+(802, 81, 'CAP', '2023-02-16', NULL, NULL),
+(803, 81, 'CAP', '2023-02-16', NULL, NULL),
+(804, 81, 'CAP', '2023-02-16', NULL, NULL),
+(805, 81, 'CAP', '2023-02-16', NULL, NULL),
+(806, 81, 'CAP', '2023-02-16', NULL, NULL),
+(807, 81, 'TC', '2023-02-16', NULL, NULL),
+(808, 81, 'TC', '2023-02-16', NULL, NULL),
+(809, 81, 'TC', '2023-02-16', NULL, NULL),
+(810, 82, 'PM', '2023-02-16', NULL, NULL),
+(811, 82, 'PM', '2023-02-16', NULL, NULL),
+(812, 82, 'PM', '2023-02-16', NULL, NULL),
+(813, 82, 'PM', '2023-02-16', NULL, NULL),
+(814, 82, 'CAP', '2023-02-16', NULL, NULL),
+(815, 82, 'CAP', '2023-02-16', NULL, NULL),
+(816, 82, 'CAP', '2023-02-16', NULL, NULL),
+(817, 82, 'CAP', '2023-02-16', NULL, NULL),
+(818, 82, 'CAP', '2023-02-16', NULL, NULL),
+(819, 82, 'CAP', '2023-02-16', NULL, NULL),
+(820, 82, 'CAP', '2023-02-16', NULL, NULL),
+(821, 82, 'CAP', '2023-02-16', NULL, NULL),
+(822, 82, 'TC', '2023-02-16', NULL, NULL),
+(823, 82, 'TC', '2023-02-16', NULL, NULL),
+(824, 82, 'TC', '2023-02-16', NULL, NULL),
+(825, 83, 'PM', '2023-02-16', NULL, NULL),
+(826, 83, 'PM', '2023-02-16', NULL, NULL),
+(827, 83, 'PM', '2023-02-16', NULL, NULL),
+(828, 83, 'PM', '2023-02-16', NULL, NULL),
+(829, 83, 'CAP', '2023-02-16', NULL, NULL),
+(830, 83, 'CAP', '2023-02-16', NULL, NULL),
+(831, 83, 'CAP', '2023-02-16', NULL, NULL),
+(832, 83, 'CAP', '2023-02-16', NULL, NULL),
+(833, 83, 'CAP', '2023-02-16', NULL, NULL),
+(834, 83, 'CAP', '2023-02-16', NULL, NULL),
+(835, 83, 'CAP', '2023-02-16', NULL, NULL),
+(836, 83, 'CAP', '2023-02-16', NULL, NULL),
+(837, 83, 'TC', '2023-02-16', NULL, NULL),
+(838, 83, 'TC', '2023-02-16', NULL, NULL),
+(839, 83, 'TC', '2023-02-16', NULL, NULL),
+(840, 84, 'PM', '2023-02-16', NULL, NULL),
+(841, 84, 'PM', '2023-02-16', NULL, NULL),
+(842, 84, 'PM', '2023-02-16', NULL, NULL),
+(843, 84, 'PM', '2023-02-16', NULL, NULL),
+(844, 84, 'CAP', '2023-02-16', NULL, NULL),
+(845, 84, 'CAP', '2023-02-16', NULL, NULL),
+(846, 84, 'CAP', '2023-02-16', NULL, NULL),
+(847, 84, 'CAP', '2023-02-16', NULL, NULL),
+(848, 84, 'CAP', '2023-02-16', NULL, NULL),
+(849, 84, 'CAP', '2023-02-16', NULL, NULL),
+(850, 84, 'CAP', '2023-02-16', NULL, NULL),
+(851, 84, 'CAP', '2023-02-16', NULL, NULL),
+(852, 84, 'TC', '2023-02-16', NULL, NULL),
+(853, 84, 'TC', '2023-02-16', NULL, NULL),
+(854, 84, 'TC', '2023-02-16', NULL, NULL),
+(855, 85, 'PM', NULL, NULL, NULL),
+(856, 85, 'PM', NULL, NULL, NULL),
+(857, 85, 'PM', NULL, NULL, NULL),
+(858, 85, 'PM', NULL, NULL, NULL),
+(859, 85, 'PM', NULL, NULL, NULL),
+(860, 85, 'PM', NULL, NULL, NULL),
+(861, 85, 'PM', NULL, NULL, NULL),
+(862, 85, 'PM', NULL, NULL, NULL),
+(863, 85, 'CAP', NULL, NULL, NULL),
+(864, 85, 'TC', NULL, NULL, NULL),
+(865, 85, 'TC', NULL, NULL, NULL),
+(866, 85, 'TC', NULL, NULL, NULL),
+(867, 86, 'PM', NULL, NULL, NULL),
+(868, 86, 'PM', NULL, NULL, NULL),
+(869, 86, 'PM', NULL, NULL, NULL),
+(870, 86, 'PM', NULL, NULL, NULL),
+(871, 86, 'PM', NULL, NULL, NULL),
+(872, 86, 'PM', NULL, NULL, NULL),
+(873, 86, 'PM', NULL, NULL, NULL),
+(874, 86, 'PM', NULL, NULL, NULL),
+(875, 86, 'CAP', NULL, NULL, NULL),
+(876, 86, 'TC', NULL, NULL, NULL),
+(877, 86, 'TC', NULL, NULL, NULL),
+(878, 86, 'TC', NULL, NULL, NULL),
+(879, 87, 'PM', NULL, NULL, NULL),
+(880, 87, 'PM', NULL, NULL, NULL),
+(881, 87, 'PM', NULL, NULL, NULL),
+(882, 87, 'PM', NULL, NULL, NULL),
+(883, 87, 'PM', NULL, NULL, NULL),
+(884, 87, 'PM', NULL, NULL, NULL),
+(885, 87, 'PM', NULL, NULL, NULL),
+(886, 87, 'PM', NULL, NULL, NULL),
+(887, 87, 'CAP', NULL, NULL, NULL),
+(888, 87, 'TC', NULL, NULL, NULL),
+(889, 87, 'TC', NULL, NULL, NULL),
+(890, 87, 'TC', NULL, NULL, NULL),
+(891, 88, 'PM', NULL, NULL, NULL),
+(892, 88, 'PM', NULL, NULL, NULL),
+(893, 88, 'PM', NULL, NULL, NULL),
+(894, 88, 'PM', NULL, NULL, NULL),
+(895, 88, 'PM', NULL, NULL, NULL),
+(896, 88, 'PM', NULL, NULL, NULL),
+(897, 88, 'PM', NULL, NULL, NULL),
+(898, 88, 'PM', NULL, NULL, NULL),
+(899, 88, 'CAP', NULL, NULL, NULL),
+(900, 88, 'TC', NULL, NULL, NULL),
+(901, 88, 'TC', NULL, NULL, NULL),
+(902, 88, 'TC', NULL, NULL, NULL),
+(903, 89, 'PM', NULL, NULL, NULL),
+(904, 89, 'PM', NULL, NULL, NULL),
+(905, 89, 'PM', NULL, NULL, NULL),
+(906, 89, 'PM', NULL, NULL, NULL),
+(907, 89, 'PM', NULL, NULL, NULL),
+(908, 89, 'PM', NULL, NULL, NULL),
+(909, 89, 'PM', NULL, NULL, NULL),
+(910, 89, 'PM', NULL, NULL, NULL),
+(911, 89, 'CAP', NULL, NULL, NULL),
+(912, 89, 'TC', NULL, NULL, NULL),
+(913, 89, 'TC', NULL, NULL, NULL),
+(914, 89, 'TC', NULL, NULL, NULL),
+(915, 90, 'PM', NULL, NULL, NULL),
+(916, 90, 'PM', NULL, NULL, NULL),
+(917, 90, 'PM', NULL, NULL, NULL),
+(918, 90, 'PM', NULL, NULL, NULL),
+(919, 90, 'AUX', NULL, NULL, NULL),
+(920, 90, 'AUX', NULL, NULL, NULL),
+(921, 90, 'AUX', NULL, NULL, NULL),
+(922, 90, 'AUX', NULL, NULL, NULL),
+(923, 90, 'AUX', NULL, NULL, NULL),
+(924, 90, 'AUX', NULL, NULL, NULL),
+(925, 90, 'AUX', NULL, NULL, NULL),
+(926, 90, 'AUX', NULL, NULL, NULL),
+(927, 90, 'TC', NULL, NULL, NULL),
+(928, 90, 'TC', NULL, NULL, NULL),
+(929, 90, 'TC', NULL, NULL, NULL),
+(930, 91, 'PM', NULL, NULL, NULL),
+(931, 91, 'PM', NULL, NULL, NULL),
+(932, 91, 'PM', NULL, NULL, NULL),
+(933, 91, 'PM', NULL, NULL, NULL),
+(934, 91, 'AUX', NULL, NULL, NULL),
+(935, 91, 'AUX', NULL, NULL, NULL),
+(936, 91, 'AUX', NULL, NULL, NULL),
+(937, 91, 'AUX', NULL, NULL, NULL),
+(938, 91, 'AUX', NULL, NULL, NULL),
+(939, 91, 'AUX', NULL, NULL, NULL),
+(940, 91, 'AUX', NULL, NULL, NULL),
+(941, 91, 'AUX', NULL, NULL, NULL),
+(942, 91, 'TC', NULL, NULL, NULL),
+(943, 91, 'TC', NULL, NULL, NULL),
+(944, 91, 'TC', NULL, NULL, NULL),
+(945, 92, 'PM', NULL, NULL, NULL),
+(946, 92, 'PM', NULL, NULL, NULL),
+(947, 92, 'PM', NULL, NULL, NULL),
+(948, 92, 'PM', NULL, NULL, NULL),
+(949, 92, 'AUX', NULL, NULL, NULL),
+(950, 92, 'AUX', NULL, NULL, NULL),
+(951, 92, 'AUX', NULL, NULL, NULL),
+(952, 92, 'AUX', NULL, NULL, NULL),
+(953, 92, 'AUX', NULL, NULL, NULL),
+(954, 92, 'AUX', NULL, NULL, NULL),
+(955, 92, 'AUX', NULL, NULL, NULL),
+(956, 92, 'AUX', NULL, NULL, NULL),
+(957, 92, 'TC', NULL, NULL, NULL),
+(958, 92, 'TC', NULL, NULL, NULL),
+(959, 92, 'TC', NULL, NULL, NULL),
+(960, 93, 'PM', NULL, NULL, NULL),
+(961, 93, 'PM', NULL, NULL, NULL),
+(962, 93, 'PM', NULL, NULL, NULL),
+(963, 93, 'PM', NULL, NULL, NULL),
+(964, 93, 'AUX', NULL, NULL, NULL),
+(965, 93, 'AUX', NULL, NULL, NULL),
+(966, 93, 'AUX', NULL, NULL, NULL),
+(967, 93, 'AUX', NULL, NULL, NULL),
+(968, 93, 'AUX', NULL, NULL, NULL),
+(969, 93, 'AUX', NULL, NULL, NULL),
+(970, 93, 'AUX', NULL, NULL, NULL),
+(971, 93, 'AUX', NULL, NULL, NULL),
+(972, 93, 'TC', NULL, NULL, NULL),
+(973, 93, 'TC', NULL, NULL, NULL),
+(974, 93, 'TC', NULL, NULL, NULL),
+(975, 94, 'PM', NULL, NULL, NULL),
+(976, 94, 'PM', NULL, NULL, NULL),
+(977, 94, 'PM', NULL, NULL, NULL),
+(978, 94, 'PM', NULL, NULL, NULL),
+(979, 94, 'AUX', NULL, NULL, NULL),
+(980, 94, 'AUX', NULL, NULL, NULL),
+(981, 94, 'AUX', NULL, NULL, NULL),
+(982, 94, 'AUX', NULL, NULL, NULL),
+(983, 94, 'AUX', NULL, NULL, NULL),
+(984, 94, 'AUX', NULL, NULL, NULL),
+(985, 94, 'AUX', NULL, NULL, NULL),
+(986, 94, 'AUX', NULL, NULL, NULL),
+(987, 94, 'TC', NULL, NULL, NULL),
+(988, 94, 'TC', NULL, NULL, NULL),
+(989, 94, 'TC', NULL, NULL, NULL),
+(990, 95, 'PM', NULL, NULL, NULL),
+(991, 95, 'PM', NULL, NULL, NULL),
+(992, 95, 'PM', NULL, NULL, NULL),
+(993, 95, 'PM', NULL, NULL, NULL),
+(994, 95, 'CAP', NULL, NULL, NULL),
+(995, 95, 'VCU', NULL, NULL, NULL),
+(996, 95, 'VCU', NULL, NULL, NULL),
+(997, 95, 'VCU', NULL, NULL, NULL),
+(998, 96, 'PM', NULL, NULL, NULL),
+(999, 96, 'PM', NULL, NULL, NULL),
+(1000, 96, 'PM', NULL, NULL, NULL),
+(1001, 96, 'PM', NULL, NULL, NULL),
+(1002, 96, 'CAP', NULL, NULL, NULL),
+(1003, 96, 'VCU', NULL, NULL, NULL),
+(1004, 96, 'VCU', NULL, NULL, NULL),
+(1005, 96, 'VCU', NULL, NULL, NULL),
+(1006, 97, 'PM', NULL, NULL, NULL),
+(1007, 97, 'PM', NULL, NULL, NULL),
+(1008, 97, 'PM', NULL, NULL, NULL),
+(1009, 97, 'PM', NULL, NULL, NULL),
+(1010, 97, 'CAP', NULL, NULL, NULL),
+(1011, 97, 'VCU', NULL, NULL, NULL),
+(1012, 97, 'VCU', NULL, NULL, NULL),
+(1013, 97, 'VCU', NULL, NULL, NULL),
+(1014, 98, 'PM', NULL, NULL, NULL),
+(1015, 98, 'PM', NULL, NULL, NULL),
+(1016, 98, 'PM', NULL, NULL, NULL),
+(1017, 98, 'PM', NULL, NULL, NULL),
+(1018, 98, 'CAP', NULL, NULL, NULL),
+(1019, 98, 'VCU', NULL, NULL, NULL),
+(1020, 98, 'VCU', NULL, NULL, NULL),
+(1021, 98, 'VCU', NULL, NULL, NULL),
+(1022, 99, 'PM', NULL, NULL, NULL),
+(1023, 99, 'PM', NULL, NULL, NULL),
+(1024, 99, 'PM', NULL, NULL, NULL),
+(1025, 99, 'PM', NULL, NULL, NULL),
+(1026, 99, 'CAP', NULL, NULL, NULL),
+(1027, 99, 'VCU', NULL, NULL, NULL),
+(1028, 99, 'VCU', NULL, NULL, NULL),
+(1029, 99, 'VCU', NULL, NULL, NULL),
+(1030, 100, 'CAP', NULL, NULL, NULL),
+(1031, 100, 'TC', NULL, NULL, NULL),
+(1032, 100, 'AUX', NULL, NULL, NULL),
+(1033, 101, 'CAP', NULL, NULL, NULL),
+(1034, 101, 'TC', NULL, NULL, NULL),
+(1035, 101, 'AUX', NULL, NULL, NULL),
+(1036, 102, 'CAP', NULL, NULL, NULL),
+(1037, 102, 'TC', NULL, NULL, NULL),
+(1038, 102, 'AUX', NULL, NULL, NULL),
+(1039, 103, 'CAP', NULL, NULL, NULL),
+(1040, 103, 'TC', NULL, NULL, NULL),
+(1041, 103, 'AUX', NULL, NULL, NULL),
+(1042, 104, 'CAP', NULL, NULL, NULL),
+(1043, 104, 'TC', NULL, NULL, NULL),
+(1044, 104, 'AUX', NULL, NULL, NULL),
+(1045, 105, 'PM', NULL, NULL, NULL),
+(1046, 105, 'PM', NULL, NULL, NULL),
+(1047, 105, 'PM', NULL, NULL, NULL),
+(1048, 105, 'PM', NULL, NULL, NULL),
+(1049, 105, 'CAP', NULL, NULL, NULL),
+(1050, 105, 'CAP', NULL, NULL, NULL),
+(1051, 105, 'CAP', NULL, NULL, NULL),
+(1052, 105, 'CAP', NULL, NULL, NULL),
+(1053, 105, 'CAP', NULL, NULL, NULL),
+(1054, 105, 'CAP', NULL, NULL, NULL),
+(1055, 105, 'CAP', NULL, NULL, NULL),
+(1056, 105, 'CAP', NULL, NULL, NULL),
+(1057, 105, 'TC', NULL, NULL, NULL),
+(1058, 105, 'TC', NULL, NULL, NULL),
+(1059, 105, 'TC', NULL, NULL, NULL),
+(1060, 106, 'PM', NULL, NULL, NULL),
+(1061, 106, 'PM', NULL, NULL, NULL),
+(1062, 106, 'PM', NULL, NULL, NULL),
+(1063, 106, 'PM', NULL, NULL, NULL),
+(1064, 106, 'PM', NULL, NULL, NULL),
+(1065, 106, 'PM', NULL, NULL, NULL),
+(1066, 106, 'PM', NULL, NULL, NULL),
+(1067, 106, 'PM', NULL, NULL, NULL),
+(1068, 106, 'CAP', NULL, NULL, NULL),
+(1069, 106, 'TC', NULL, NULL, NULL),
+(1070, 106, 'TC', NULL, NULL, NULL),
+(1071, 106, 'TC', NULL, NULL, NULL),
+(1072, 107, 'PM', NULL, NULL, NULL),
+(1073, 107, 'PM', NULL, NULL, NULL),
+(1074, 107, 'PM', NULL, NULL, NULL),
+(1075, 107, 'PM', NULL, NULL, NULL),
+(1076, 107, 'PM', NULL, NULL, NULL),
+(1077, 107, 'PM', NULL, NULL, NULL),
+(1078, 107, 'PM', NULL, NULL, NULL),
+(1079, 107, 'PM', NULL, NULL, NULL),
+(1080, 107, 'CAP', NULL, NULL, NULL),
+(1081, 107, 'TC', NULL, NULL, NULL),
+(1082, 107, 'TC', NULL, NULL, NULL),
+(1083, 107, 'TC', NULL, NULL, NULL),
+(1084, 108, 'PM', NULL, NULL, NULL),
+(1085, 108, 'PM', NULL, NULL, NULL),
+(1086, 108, 'PM', NULL, NULL, NULL),
+(1087, 108, 'PM', NULL, NULL, NULL),
+(1088, 108, 'PM', NULL, NULL, NULL),
+(1089, 108, 'PM', NULL, NULL, NULL),
+(1090, 108, 'PM', NULL, NULL, NULL),
+(1091, 108, 'PM', NULL, NULL, NULL),
+(1092, 108, 'CAP', NULL, NULL, NULL),
+(1093, 108, 'TC', NULL, NULL, NULL),
+(1094, 108, 'TC', NULL, NULL, NULL),
+(1095, 108, 'TC', NULL, NULL, NULL),
+(1096, 109, 'PM', NULL, NULL, NULL),
+(1097, 109, 'PM', NULL, NULL, NULL),
+(1098, 109, 'PM', NULL, NULL, NULL),
+(1099, 109, 'PM', NULL, NULL, NULL),
+(1100, 109, 'AUX', NULL, NULL, NULL),
+(1101, 109, 'AUX', NULL, NULL, NULL),
+(1102, 109, 'AUX', NULL, NULL, NULL),
+(1103, 109, 'AUX', NULL, NULL, NULL),
+(1104, 109, 'AUX', NULL, NULL, NULL),
+(1105, 109, 'AUX', NULL, NULL, NULL),
+(1106, 109, 'AUX', NULL, NULL, NULL),
+(1107, 109, 'AUX', NULL, NULL, NULL),
+(1108, 109, 'TC', NULL, NULL, NULL),
+(1109, 109, 'TC', NULL, NULL, NULL),
+(1110, 109, 'TC', NULL, NULL, NULL),
+(1111, 110, 'PM', NULL, NULL, NULL),
+(1112, 110, 'PM', NULL, NULL, NULL),
+(1113, 110, 'PM', NULL, NULL, NULL),
+(1114, 110, 'PM', NULL, NULL, NULL),
+(1115, 110, 'CAP', NULL, NULL, NULL),
+(1116, 110, 'VCU', NULL, NULL, NULL),
+(1117, 110, 'VCU', NULL, NULL, NULL),
+(1118, 110, 'VCU', NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `module_stock`
+--
+
+CREATE TABLE `module_stock` (
+  `module_type` varchar(200) NOT NULL,
+  `stock` int NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `module_stock`
+--
+
+INSERT INTO `module_stock` (`module_type`, `stock`) VALUES
+('AUX', 1),
+('CAP', 0),
+('PM', 9),
+('TC', 4),
+('VCU', 10);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders_placed`
+--
+
+CREATE TABLE `orders_placed` (
+  `order_id` int NOT NULL,
+  `customer_id` varchar(200) NOT NULL,
+  `order_date` date NOT NULL,
+  `order_status` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `orders_placed`
+--
+
+INSERT INTO `orders_placed` (`order_id`, `customer_id`, `order_date`, `order_status`) VALUES
+(1, 'aa', '2023-02-10', 'Placed'),
+(2, 'aa', '2023-02-10', 'Placed'),
+(3, 'aa', '2023-02-10', 'Placed'),
+(4, 'invDev', '2023-02-11', 'Placed'),
+(5, 'invDev', '2023-02-11', 'Placed'),
+(6, 'invDev', '2023-02-11', 'Placed'),
+(7, 'invDev', '2023-02-11', 'Placed'),
+(8, 'invDev', '2023-02-11', 'Placed'),
+(9, 'invDev', '2023-02-11', 'Placed'),
+(10, 'invDev', '2023-02-11', 'Placed'),
+(11, 'invDev', '2023-02-11', 'Placed'),
+(12, 'invDev', '2023-02-11', 'Placed'),
+(13, 'invDev', '2023-02-11', 'Placed'),
+(14, 'invDev', '2023-02-11', 'Placed'),
+(15, 'invDev', '2023-02-11', 'Placed'),
+(16, 'invDev', '2023-02-11', 'Placed'),
+(17, 'invDev', '2023-02-11', 'Placed'),
+(18, 'invDev', '2023-02-11', 'Placed'),
+(19, 'invDev', '2023-02-11', 'Placed'),
+(20, 'invDev', '2023-02-11', 'Placed'),
+(21, 'invDev', '2023-02-11', 'Placed'),
+(22, 'rizzRahul', '2023-02-16', 'Placed'),
+(23, 'invDev', '2023-02-16', 'Placed'),
+(24, 'invDev', '2023-02-16', 'Placed');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `panel_definition`
+--
+
+CREATE TABLE `panel_definition` (
+  `panel_type` int NOT NULL,
+  `module_details` varchar(16000) NOT NULL,
+  `panel_cost` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `panel_definition`
+--
+
+INSERT INTO `panel_definition` (`panel_type`, `module_details`, `panel_cost`) VALUES
+(1, '{\"PM\":4,\"CAP\":8,\"TC\":3}', 11989),
+(2, '{\"PM\":8,\"CAP\":1,\"TC\":3}', 23123),
+(3, '{\"PM\":4,\"AUX\":8,\"TC\":3}', 1313),
+(4, '{\"PM\":4,\"CAP\":1,\"VCU\":3}', 112312),
+(5, '{\"CAP\":1,\"TC\":1,\"AUX\":1}', 1112);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `panel_details`
+--
+
+CREATE TABLE `panel_details` (
+  `panel_id` int NOT NULL,
+  `order_id` int DEFAULT NULL,
+  `panel_type` int NOT NULL,
+  `date_of_issue` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `panel_details`
+--
+
+INSERT INTO `panel_details` (`panel_id`, `order_id`, `panel_type`, `date_of_issue`) VALUES
+(1, 1, 1, '2023-02-10'),
+(2, 1, 1, '2023-02-10'),
+(3, 1, 1, '2023-02-10'),
+(4, 2, 1, '2023-02-10'),
+(5, 2, 1, '2023-02-10'),
+(6, 2, 1, '2023-02-10'),
+(7, 3, 1, '2023-02-10'),
+(8, 3, 1, '2023-02-10'),
+(9, 3, 1, '2023-02-10'),
+(10, 4, 1, '2023-02-11'),
+(11, 1, 2, '2023-02-10'),
+(12, 1, 2, '2023-02-10'),
+(13, 2, 2, '2023-02-10'),
+(14, 2, 2, '2023-02-10'),
+(15, 3, 2, '2023-02-10'),
+(16, 3, 2, '2023-02-10'),
+(17, 5, 2, '2023-02-11'),
+(18, 5, 2, '2023-02-11'),
+(19, 6, 2, '2023-02-11'),
+(20, 7, 2, '2023-02-11'),
+(21, 8, 3, '2023-02-11'),
+(22, 9, 3, '2023-02-11'),
+(23, 10, 3, '2023-02-11'),
+(24, 11, 3, '2023-02-11'),
+(25, 12, 3, '2023-02-11'),
+(26, 13, 3, '2023-02-11'),
+(27, 14, 3, '2023-02-11'),
+(28, 15, 3, '2023-02-11'),
+(29, 16, 3, '2023-02-11'),
+(30, 17, 3, '2023-02-11'),
+(31, 17, 4, '2023-02-11'),
+(32, 18, 4, '2023-02-11'),
+(33, 18, 4, '2023-02-11'),
+(34, 19, 4, '2023-02-11'),
+(35, 20, 4, '2023-02-11'),
+(36, 20, 4, '2023-02-11'),
+(37, 21, 4, '2023-02-11'),
+(38, 23, 4, '2023-02-16'),
+(39, 24, 4, '2023-02-16'),
+(40, NULL, 4, NULL),
+(41, 1, 5, '2023-02-10'),
+(42, 2, 5, '2023-02-10'),
+(43, 3, 5, '2023-02-10'),
+(44, 17, 5, '2023-02-11'),
+(45, 18, 5, '2023-02-11'),
+(46, 18, 5, '2023-02-11'),
+(47, 18, 5, '2023-02-11'),
+(48, 18, 5, '2023-02-11'),
+(49, 18, 5, '2023-02-11'),
+(50, 18, 5, '2023-02-11'),
+(51, 22, 1, '2023-02-16'),
+(52, 23, 2, '2023-02-16'),
+(53, 22, 1, '2023-02-16'),
+(54, 24, 2, '2023-02-16'),
+(55, 23, 3, '2023-02-16'),
+(56, NULL, 4, NULL),
+(57, 23, 5, '2023-02-16'),
+(58, 24, 5, '2023-02-16'),
+(59, NULL, 5, NULL),
+(60, NULL, 5, NULL),
+(61, NULL, 5, NULL),
+(62, NULL, 5, NULL),
+(63, NULL, 5, NULL),
+(64, NULL, 5, NULL),
+(65, 24, 2, '2023-02-16'),
+(66, NULL, 2, NULL),
+(67, NULL, 2, NULL),
+(68, NULL, 2, NULL),
+(69, NULL, 2, NULL),
+(70, NULL, 3, NULL),
+(71, NULL, 3, NULL),
+(72, NULL, 3, NULL),
+(73, NULL, 3, NULL),
+(74, NULL, 4, NULL),
+(75, NULL, 4, NULL),
+(76, NULL, 5, NULL),
+(77, NULL, 5, NULL),
+(78, NULL, 5, NULL),
+(79, NULL, 5, NULL),
+(80, 22, 1, '2023-02-16'),
+(81, 22, 1, '2023-02-16'),
+(82, 22, 1, '2023-02-16'),
+(83, 22, 1, '2023-02-16'),
+(84, 23, 1, '2023-02-16'),
+(85, NULL, 2, NULL),
+(86, NULL, 2, NULL),
+(87, NULL, 2, NULL),
+(88, NULL, 2, NULL),
+(89, NULL, 2, NULL),
+(90, NULL, 3, NULL),
+(91, NULL, 3, NULL),
+(92, NULL, 3, NULL),
+(93, NULL, 3, NULL),
+(94, NULL, 3, NULL),
+(95, NULL, 4, NULL),
+(96, NULL, 4, NULL),
+(97, NULL, 4, NULL),
+(98, NULL, 4, NULL),
+(99, NULL, 4, NULL),
+(100, NULL, 5, NULL),
+(101, NULL, 5, NULL),
+(102, NULL, 5, NULL),
+(103, NULL, 5, NULL),
+(104, NULL, 5, NULL),
+(105, NULL, 1, NULL),
+(106, NULL, 2, NULL),
+(107, NULL, 2, NULL),
+(108, NULL, 2, NULL),
+(109, NULL, 3, NULL),
+(110, NULL, 4, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `panel_stock`
+--
+
+CREATE TABLE `panel_stock` (
+  `panel1` int NOT NULL DEFAULT '0',
+  `panel2` int NOT NULL DEFAULT '0',
+  `panel3` int NOT NULL DEFAULT '0',
+  `panel4` int NOT NULL DEFAULT '0',
+  `panel5` int NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `panel_stock`
+--
+
+INSERT INTO `panel_stock` (`panel1`, `panel2`, `panel3`, `panel4`, `panel5`) VALUES
+(1, 12, 10, 10, 15);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `requestforemployee`
+--
+
+CREATE TABLE `requestforemployee` (
+  `customer_id` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `request_details`
+--
+
+CREATE TABLE `request_details` (
+  `request_id` int NOT NULL,
+  `customer_id` varchar(200) NOT NULL,
+  `module_id` int NOT NULL,
+  `status` varchar(2000) NOT NULL DEFAULT 'Pending',
+  `request_date` date NOT NULL,
+  `report_file` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `request_details`
+--
+
+INSERT INTO `request_details` (`request_id`, `customer_id`, `module_id`, `status`, `request_date`, `report_file`) VALUES
+(1, 'invDev', 136, 'Granted', '2023-02-13', '1|01. Software architecture.pdf'),
+(2, 'invDev', 137, 'Denied', '2023-02-13', '2|02. Software Architecture Review - Queue model vs. Topic model.pdf'),
+(3, 'invDev', 138, 'Denied', '2023-02-13', '3|03. CAP Theorem.pdf'),
+(4, 'invDev', 139, 'Denied', '2023-02-13', '4|LoC Oconverter.pdf'),
+(5, 'invDev', 264, 'Granted', '2023-02-13', '5|03. CAP Theorem.pdf'),
+(6, 'invDev', 142, 'Granted', '2023-02-14', '6|02. Software Architecture Review - Queue model vs. Topic model.pdf'),
+(7, 'invDev', 266, 'Granted', '2023-02-14', '7|03. CAP Theorem.pdf'),
+(8, 'rizzRahul', 562, 'Denied', '2023-02-16', '8|01. Software architecture.pdf'),
+(9, 'invDev', 321, 'Granted', '2023-02-16', '9|06. Failure Detection.pdf'),
+(10, 'invDev', 578, 'Pending', '2023-02-16', '10|06. Failure Detection.pdf'),
+(11, 'invDev', 141, 'Pending', '2023-02-16', '11|06. Failure Detection.pdf');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `user_id` varchar(200) NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `privilege` varchar(200) NOT NULL DEFAULT 'customer'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`user_id`, `email`, `password`, `privilege`) VALUES
+('a', 'a', '$2a$10$mMjT5sitrorNhed0gX.vzev6lAe/p9RN3A4GYczt/VkumEjuPwK3K', 'customer'),
+('aa', 'tst@mymail.com', 'as11213', 'customer'),
+('as11213', 'firstCust@mymail.com', '87654321', 'customer'),
+('fdsfsdfdsfsd', 'shreyasajoshi.cs20@rvce.edu.in', 'bgfb', 'customer'),
+('invAdmin', 'invAdmin@sentient.com', '$2a$10$JtqNTJ/DuHlQQ6xYIUQOxOw1Ao2edXtps.r.1HwUM75NIxzQfdF9K', 'admin'),
+('invDev', 'iamscjoshi', '$2a$10$iQYFlAjx9NsuUKtyuU7m8uIGR3H.CnI773WtnCxANLMSvolBF0pPK', 'customer'),
+('invEmployee', 'invEmp@sentient.com', '$2a$10$WN0xGPTWMJvJrBmHGaAhGeb88.BNQh3FBZCdcQypiWvhmtBWfy3GO', 'employee'),
+('og6969', 'admin@mymail.com', '12345678', 'admin'),
+('pkkp', 'shreyasa@crushes', '$2a$10$30DgQB8/YKPntH0ZnL0MvOVgNqqN/g5gCm0J3ojagH5V85aDdnDz6', 'customer'),
+('rizzRahul', 'rahul@rizzer.com', '$2a$10$MjRqPPzv1AVJpIsWo3aqcOzI41V2Lp/lqr3O.aV2f8qJK9R3faYmO', 'customer'),
+('shreyasa', 'iamscjoshi@gmail.com', '12345678', 'customer'),
+('test', 'test1@gmail.com', '12345678', 'customer'),
+('testEmp', 'iamscjoshi@me.com', '$2a$10$b0wWG.X2TR60hAuJfjKtpuOh4Du3Ri81/KzPNlTtRdTIhrMgIhyTS', 'customer');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `cart_contents`
+--
+ALTER TABLE `cart_contents`
+  ADD UNIQUE KEY `customer_id_2` (`customer_id`),
+  ADD KEY `customer_id` (`customer_id`);
+
+--
+-- Indexes for table `counts`
+--
+ALTER TABLE `counts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+  ADD KEY `customer_id` (`customer_id`);
+
+--
+-- Indexes for table `module_definition`
+--
+ALTER TABLE `module_definition`
+  ADD PRIMARY KEY (`module_type`);
+
+--
+-- Indexes for table `module_details`
+--
+ALTER TABLE `module_details`
+  ADD PRIMARY KEY (`module_id`),
+  ADD KEY `panel_id` (`panel_id`);
+
+--
+-- Indexes for table `module_stock`
+--
+ALTER TABLE `module_stock`
+  ADD PRIMARY KEY (`module_type`);
+
+--
+-- Indexes for table `orders_placed`
+--
+ALTER TABLE `orders_placed`
+  ADD PRIMARY KEY (`order_id`),
+  ADD KEY `customer_id` (`customer_id`);
+
+--
+-- Indexes for table `panel_definition`
+--
+ALTER TABLE `panel_definition`
+  ADD PRIMARY KEY (`panel_type`);
+
+--
+-- Indexes for table `panel_details`
+--
+ALTER TABLE `panel_details`
+  ADD PRIMARY KEY (`panel_id`),
+  ADD KEY `order_id` (`order_id`);
+
+--
+-- Indexes for table `panel_stock`
+--
+ALTER TABLE `panel_stock`
+  ADD UNIQUE KEY `panel1` (`panel1`);
+
+--
+-- Indexes for table `requestforemployee`
+--
+ALTER TABLE `requestforemployee`
+  ADD KEY `customer_id` (`customer_id`);
+
+--
+-- Indexes for table `request_details`
+--
+ALTER TABLE `request_details`
+  ADD PRIMARY KEY (`request_id`),
+  ADD KEY `customer_id` (`customer_id`),
+  ADD KEY `module_id` (`module_id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `cart_contents`
+--
+ALTER TABLE `cart_contents`
+  ADD CONSTRAINT `cart_contents_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `customer`
+--
+ALTER TABLE `customer`
+  ADD CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `module_details`
+--
+ALTER TABLE `module_details`
+  ADD CONSTRAINT `module_details_ibfk_1` FOREIGN KEY (`panel_id`) REFERENCES `panel_details` (`panel_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `orders_placed`
+--
+ALTER TABLE `orders_placed`
+  ADD CONSTRAINT `orders_placed_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `panel_details`
+--
+ALTER TABLE `panel_details`
+  ADD CONSTRAINT `panel_details_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders_placed` (`order_id`);
+
+--
+-- Constraints for table `request_details`
+--
+ALTER TABLE `request_details`
+  ADD CONSTRAINT `request_details_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `request_details_ibfk_2` FOREIGN KEY (`module_id`) REFERENCES `module_details` (`module_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
